@@ -1,6 +1,6 @@
 /* main */
 main {
-  padding: 30px 20px 100px;
+  padding: 20px 20px 100px;
 }
 
 /* .item-list */
@@ -33,8 +33,6 @@ main {
   justify-content: start;
   align-items: start;
 }
-.item-list__info-title {
-}
 .item-list__info-meta {
   font-size: smaller;
   color: rgba(0, 0, 0, 0.3);
@@ -55,4 +53,5 @@ main {
   border-radius: 25px;
   font-size: 15px;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  cursor: pointer;
 }
