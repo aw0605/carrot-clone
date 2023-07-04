@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>글쓰기</title>
+    <link
+      rel="stylesheet"
+      as="style"
+      crossorigin
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css"
+    />
+
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <header>
+      <div class="info-bar">
+        <div class="info-bar__time">20:00</div>
+        <div class="info-bar__icons">
+          <img src="assets/chart.svg" alt="chart" />
+          <img src="assets/wifi.svg" alt="wifi" />
+          <img src="assets/battery.svg" alt="battery" />
+        </div>
+      </div>
+      <div class="menu-bar">
+        <div class="menu-bar__X">
+          <a class="menu-bar__X-icon" href="index.html">X</a>
+        </div>
+        <div class="menu-title">내 물건 팔기</div>
+        <div></div>
+      </div>
+    </header>
+
+    <main>
+      <form id="write-form">
+        <div>
+          <label for="image">이미지</label>
+          <input type="file" id="image" name="image" />
+        </div>
+        <div>
+          <label for="title">제목</label>
+          <input type="text" id="title" name="title" />
+        </div>
+        <div>
+          <label for="price">가격</label>
+          <input type="number" id="price" name="price" />
+        </div>
+        <div>
+          <label for="description">설명</label>
+          <input type="text" id="description" name="description" />
+        </div>
+        <div>
+          <label for="place">장소</label>
+          <input type="text" id="place" name="place" />
+        </div>
+
+        <div id="write-submit">
+          <button type="submit">완료</button>
+        </div>
+      </form>
+    </main>
+
+    <div class="media-info-msg">화면 사이즈를 줄여주세요</div>
+
+    <script src="write.js"></script>
+  </body>
+</html>
