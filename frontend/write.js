@@ -8,6 +8,9 @@ async function handleSubmitForm(e) {
       body,
     });
     const data = await res.json();
+    const accessToken = data.access_token;
+    window.localStorage.setItem("token", accessToken);
+
     if (data === "200") window.location.pathname = "/";
   } catch (e) {
     console.error(e);

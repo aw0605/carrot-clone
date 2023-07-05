@@ -4,38 +4,67 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>회원가입</title>
+    <link
+      rel="stylesheet"
+      as="style"
+      crossorigin
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css"
+    />
+
+    <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
-    <form id="signup-form" action="/signup" method="post">
-      <div>회원 가입</div>
-      <div>
-        <label for="id">아이디</label>
-        <input type="text" id="id" name="id" required />
+    <header>
+      <div class="info-bar">
+        <div class="info-bar__time">20:00</div>
+        <div class="info-bar__icons">
+          <img src="assets/chart.svg" alt="chart" />
+          <img src="assets/wifi.svg" alt="wifi" />
+          <img src="assets/battery.svg" alt="battery" />
+        </div>
       </div>
-      <div>
-        <label for="password">패스워드</label>
-        <input type="password" id="password" name="password" required />
+      <div class="menu-bar">
+        <div class="menu-bar__X">
+          <a class="menu-bar__X-icon" href="index.html">X</a>
+        </div>
+        <div class="menu-title">회원 가입</div>
+        <div></div>
       </div>
-      <div>
-        <label for="password2">패스워드 확인</label>
-        <input type="password" id="password2" name="password2" required />
-      </div>
+    </header>
 
-      <div>
-        <label for="name">이름</label>
-        <input type="text" id="name" name="name" required />
-      </div>
-      <div>
-        <label for="email">이메일</label>
-        <input type="email" id="email" name="email" required />
-      </div>
+    <main>
+      <form id="signup-form" action="/signup" method="post">
+        <div>
+          <label for="id">아이디</label>
+          <input type="text" id="id" name="id" required />
+        </div>
+        <div>
+          <label for="password">패스워드</label>
+          <input type="password" id="password" name="password" required />
+        </div>
+        <div>
+          <label for="password2">패스워드 확인</label>
+          <input type="password" id="password2" name="password2" required />
+        </div>
 
-      <div>
-        <button type="submit">회원 가입하기</button>
-      </div>
+        <div>
+          <label for="name">이름</label>
+          <input type="text" id="name" name="name" required />
+        </div>
+        <div>
+          <label for="email">이메일</label>
+          <input type="email" id="email" name="email" required />
+        </div>
 
-      <div id="info"></div>
-    </form>
+        <div>
+          <button type="submit">회원 가입하기</button>
+        </div>
+
+        <div id="info"></div>
+      </form>
+    </main>
+
+    <div class="media-info-msg">화면 사이즈를 줄여주세요</div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/js-sha256/0.9.0/sha256.min.js"></script>
     <script src="signup.js"></script>
