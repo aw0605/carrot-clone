@@ -1,3 +1,4 @@
+/* ===================== index ===================== */
 /* main */
 main {
   padding: 20px 20px 100px 20px;
@@ -44,6 +45,25 @@ main {
   font-weight: bold;
 }
 
+/* .write-btn */
+.write-btn {
+  position: fixed;
+  bottom: 120px;
+  right: 20px;
+  background-color: var(--btn-primary);
+  color: #fff;
+  padding: 10px 15px;
+  border-radius: 25px;
+  font-size: 15px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  text-decoration: none;
+}
+.write-btn:hover {
+  background-color: var(--btn-hover);
+}
+
 /* ===================== write ===================== */
 #write-form .write-input_box {
   display: flex;
@@ -84,24 +104,6 @@ main {
 #write-form input#place {
   width: calc(100% - 150px);
 }
-/* .write-btn */
-.write-btn {
-  position: fixed;
-  bottom: 120px;
-  right: 20px;
-  background-color: var(--btn-primary);
-  color: #fff;
-  padding: 10px 15px;
-  border-radius: 25px;
-  font-size: 15px;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-  cursor: pointer;
-  transition: all 0.3s ease-in-out;
-  text-decoration: none;
-}
-.write-btn:hover {
-  background-color: var(--btn-hover);
-}
 #write-submit {
   position: absolute;
   top: 34px;
@@ -113,4 +115,42 @@ main {
   background-color: transparent;
   color: #ff8a3d;
   cursor: pointer;
+}
+
+/* ===================== login ===================== */
+#login-form {
+  padding: 10px;
+}
+#login-form input {
+  width: 100%;
+  padding: 15px;
+  margin-top: 15px;
+  font-size: 14px;
+  color: grey;
+  border: 1px solid gray;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+.login-submit {
+  margin-top: 20px;
+}
+.login-submit button {
+  width: 100%;
+  padding: 15px 0;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  color: #fff;
+  background-color: var(--btn-primary);
+  box-sizing: border-box;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+.login-submit button:hover {
+  background-color: var(--btn-hover);
+}
+#info {
+  margin-top: 10px;
 }
