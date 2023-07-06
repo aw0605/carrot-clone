@@ -44,6 +44,46 @@ main {
   font-weight: bold;
 }
 
+/* ===================== write ===================== */
+#write-form .write-input_box {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  border-bottom: 1px solid #dededf;
+  padding: 13px 10px;
+}
+#write-form input {
+  width: 100%;
+  padding: 5px 0;
+  font-size: 13px;
+  color: grey;
+  border: none;
+}
+#image-label {
+  width: 70px;
+  height: 70px;
+  border-radius: 10px;
+  border: 1px solid gray;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+#image-label img {
+  width: 30px;
+}
+#write-form input#image {
+  display: none;
+}
+#write-form input#description {
+  height: 50px;
+}
+#write-form .write-input_placebox {
+  justify-content: space-between;
+}
+#write-form input#place {
+  width: calc(100% - 150px);
+}
 /* .write-btn */
 .write-btn {
   position: fixed;
