@@ -14,51 +14,6 @@
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
-    <header>
-      <div class="info-bar">
-        <div class="info-bar__time">20:00</div>
-        <div class="info-bar__icons">
-          <img src="assets/chart.svg" alt="chart" />
-          <img src="assets/wifi.svg" alt="wifi" />
-          <img src="assets/battery.svg" alt="battery" />
-        </div>
-      </div>
-      <div class="menu-bar">
-        <div class="menu-bar__X">
-          <a class="menu-bar__X-icon" href="index.html">X</a>
-        </div>
-        <div class="menu-title">로그인</div>
-        <div></div>
-      </div>
-    </header>
-
-    <main>
-      <form id="login-form" action="/login" method="post">
-        <div class="login-input_box">
-          <label for="id"></label>
-          <input type="text" id="id" name="id" placeholder="아이디" required />
-        </div>
-        <div class="login-input_box">
-          <label for="password"></label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            placeholder="패스워드"
-            required
-          />
-        </div>
-
-        <div class="login-submit">
-          <button type="submit">로그인</button>
-        </div>
-
-        <div id="info"></div>
-      </form>
-    </main>
-
-    <div class="media-info-msg">화면 사이즈를 줄여주세요</div>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/js-sha256/0.9.0/sha256.min.js"></script>
     <script src="login.js"></script>
   </body>
