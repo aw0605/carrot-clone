@@ -36,6 +36,10 @@ main {
   justify-content: start;
   align-items: start;
 }
+.item-list__info div:last-child {
+  font-size: 13px;
+  margin-top: 20px;
+}
 .item-list__info-meta {
   font-size: smaller;
   color: rgba(0, 0, 0, 0.3);
@@ -70,14 +74,17 @@ main {
   justify-content: flex-start;
   align-items: center;
   border-bottom: 1px solid #dededf;
-  padding: 13px 10px;
+  padding: 13px 0;
 }
 #write-form input {
   width: 100%;
-  padding: 5px 0;
+  padding: 5px 10px;
   font-size: 13px;
   color: grey;
   border: none;
+}
+#write-form input:focus {
+  color: #000;
 }
 #image-label {
   width: 70px;
@@ -88,6 +95,10 @@ main {
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+#image-label:hover {
+  background-color: rgba(0, 0, 0, 0.2);
 }
 #image-label img {
   width: 30px;
@@ -99,6 +110,7 @@ main {
   height: 50px;
 }
 #write-form .write-input_placebox {
+  font-size: 15px;
   justify-content: space-between;
 }
 #write-form input#place {

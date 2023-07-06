@@ -1,7 +1,8 @@
 <script>
-    let hour = new Date().getHours();
-    let min = new Date().getMinutes().toString().padStart(2, "0");
-  </script>
+  import Footer from "../components/Footer.svelte";
+  let hour = new Date().getHours().toString().padStart(2, "0");
+  let min = new Date().getMinutes().toString().padStart(2, "0");
+</script>
 
 <header>
   <div class="info-bar">
@@ -45,5 +46,7 @@
     <div id="info" />
   </form>
 </main>
+
+<Footer location="login" />
 
 <div class="media-info-msg">화면 사이즈를 줄여주세요</div>

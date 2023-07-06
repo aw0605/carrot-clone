@@ -1,6 +1,36 @@
 <script>
-  let hour = new Date().getHours();
+  import { onMount } from "svelte";
+  import { getDatabase, ref, onValue } from "firebase/database";
+  import Footer from "../components/Footer.svelte";
+
+  let hour = new Date().getHours().toString().padStart(2, "0");
   let min = new Date().getMinutes().toString().padStart(2, "0");
+
+  const calcTime = (timestamp) => {
+    //한국시간 UTC+9
+    const curTime = new Date().getTime() - 9 * 60 * 60 * 1000;
+    const time = new Date(curTime - timestamp);
+    const hour = time.getHours();
+    const minute = time.getMinutes();
+    const second = time.getSeconds();
+
+    if (hour > 0) return `${hour}시간 전`;
+    else if (minute > 0) return `${minute}분 전`;
+    else if (second > 0) return `${second}초 전`;
+    else return "방금 전";
+  };
+
+  $: items = [];
+
+  const db = getDatabase();
+  const itemsRef = ref(db, "items/");
+
+  onMount(() => {
+    onValue(itemsRef, (snapshot) => {
+      const data = snapshot.val();
+      items = Object.values(data).reverse();
+    });
+  });
 </script>
 
 <header>
@@ -35,102 +65,25 @@
 </header>
 
 <main>
-  <!-- <div class="item-list">
-      <div class="item-list__img">
-        <img src="assets/img.svg" alt="img" />
-      </div>
-      <div class="item-list__info">
-        <div class="item-list__info-title">게이밍피씨 팝니다.</div>
-        <div class="item-list__info-meta">역삼동 19초 전</div>
-        <div class="item-list__info-price">100만원</div>
-      </div>
-    </div>
+  {#each items as item}
     <div class="item-list">
       <div class="item-list__img">
-        <img src="assets/img.svg" alt="img" />
+        <img src={item.imgUrl} alt={item.title} />
       </div>
       <div class="item-list__info">
-        <div class="item-list__info-title">게이밍피씨 팝니다.</div>
-        <div class="item-list__info-meta">역삼동 19초 전</div>
-        <div class="item-list__info-price">100만원</div>
+        <div class="item-list__info-title">{item.title}</div>
+        <div class="item-list__info-meta">
+          {item.place}
+          {calcTime(item.insertAt)}
+        </div>
+        <div class="item-list__info-price">{item.price}원</div>
+        <div>{item.description}</div>
       </div>
     </div>
-    <div class="item-list">
-      <div class="item-list__img">
-        <img src="assets/img.svg" alt="img" />
-      </div>
-      <div class="item-list__info">
-        <div class="item-list__info-title">게이밍피씨 팝니다.</div>
-        <div class="item-list__info-meta">역삼동 19초 전</div>
-        <div class="item-list__info-price">100만원</div>
-      </div>
-    </div>
-    <div class="item-list">
-      <div class="item-list__img">
-        <img src="assets/img.svg" alt="img" />
-      </div>
-      <div class="item-list__info">
-        <div class="item-list__info-title">게이밍피씨 팝니다.</div>
-        <div class="item-list__info-meta">역삼동 19초 전</div>
-        <div class="item-list__info-price">100만원</div>
-      </div>
-    </div>
-    <div class="item-list">
-      <div class="item-list__img">
-        <img src="assets/img.svg" alt="img" />
-      </div>
-      <div class="item-list__info">
-        <div class="item-list__info-title">게이밍피씨 팝니다.</div>
-        <div class="item-list__info-meta">역삼동 19초 전</div>
-        <div class="item-list__info-price">100만원</div>
-      </div>
-    </div>
-    <div class="item-list">
-      <div class="item-list__img">
-        <img src="assets/img.svg" alt="img" />
-      </div>
-      <div class="item-list__info">
-        <div class="item-list__info-title">게이밍피씨 팝니다.</div>
-        <div class="item-list__info-meta">역삼동 19초 전</div>
-        <div class="item-list__info-price">100만원</div>
-      </div>
-    </div> -->
+  {/each}
   <a class="write-btn" href="#/write">+ 글쓰기</a>
 </main>
 
-<footer>
-  <div id="footer-block">
-    <div class="footer-icons">
-      <div class="footer-icons__img">
-        <img src="assets/home.svg" alt="home" />
-      </div>
-      <div class="footer-icons__desc">홈</div>
-    </div>
-    <div class="footer-icons">
-      <div class="footer-icons__img">
-        <img src="assets/docs.svg" alt="docs" />
-      </div>
-      <div class="footer-icons__desc">동네생활</div>
-    </div>
-    <div class="footer-icons">
-      <div class="footer-icons__img">
-        <img src="assets/location.svg" alt="location" />
-      </div>
-      <div class="footer-icons__desc">내 근처</div>
-    </div>
-    <div class="footer-icons">
-      <div class="footer-icons__img">
-        <img src="assets/chat.svg" alt="chat" />
-      </div>
-      <div class="footer-icons__desc">채팅</div>
-    </div>
-    <div class="footer-icons">
-      <div class="footer-icons__img">
-        <img src="assets/user.svg" alt="user" />
-      </div>
-      <div class="footer-icons__desc">나의 당근</div>
-    </div>
-  </div>
-</footer>
+<Footer location="home" />
 
 <div class="media-info-msg">화면 사이즈를 줄여주세요</div>
