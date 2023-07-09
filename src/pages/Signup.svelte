@@ -1,13 +1,24 @@
 <script>
-      import Footer from "../components/Footer.svelte";
-  let hour = new Date().getHours().toString().padStart(2, "0");
-  let min = new Date().getMinutes().toString().padStart(2, "0");
+      import { afterUpdate } from "svelte";
+      import Nav from "../components/Nav.svelte";
+  
+      let currentTime = getTimeString();
+
+  setInterval(() => {
+    currentTime = getTimeString();
+  }, 60000);
+
+  function getTimeString() {
+    const date = new Date();
+    let hour = String(date.getHours()).padStart(2, "0");
+    let min = String(date.getMinutes()).padStart(2, "0");
+    return `${hour}:${min}`;
+  }
 </script>
 
 <header>
   <div class="info-bar">
-    <div class="info-bar__time">{hour}:{min}</div>
-    <div class="info-bar__icons">
+    <div class="info-bar__time">{currentTime}
       <img src="assets/chart.svg" alt="chart" />
       <img src="assets/wifi.svg" alt="wifi" />
       <img src="assets/battery.svg" alt="battery" />
@@ -72,6 +83,6 @@
   </form>
 </main>
 
-<Footer location="signup" />
+<Nav location="signup" />
 
 <div class="media-info-msg">화면 사이즈를 줄여주세요</div>

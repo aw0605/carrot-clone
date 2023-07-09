@@ -149,6 +149,7 @@ main {
 .login-submit button {
   width: 100%;
   padding: 15px 0;
+  margin-bottom: 15px;
   text-align: center;
   font-size: 18px;
   font-weight: bold;
@@ -160,8 +161,17 @@ main {
   cursor: pointer;
   transition: all 0.3s ease-in-out;
 }
+.login-submit button.login-google {
+  background-color: #fff;
+  color: var(--btn-primary);
+  border: 1px solid var(--btn-primary);
+}
 .login-submit button:hover {
   background-color: var(--btn-hover);
+}
+.login-submit button.login-google:hover {
+  background-color: var(--btn-primary);
+  color: #fff;
 }
 #info {
   margin-top: 10px;

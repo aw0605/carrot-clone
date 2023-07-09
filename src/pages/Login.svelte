@@ -1,12 +1,46 @@
 <script>
-  import Footer from "../components/Footer.svelte";
-  let hour = new Date().getHours().toString().padStart(2, "0");
-  let min = new Date().getMinutes().toString().padStart(2, "0");
+  import { afterUpdate } from "svelte";
+  import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+  import Nav from "../components/Nav.svelte";
+  import { user$ } from "../store";
+
+  let currentTime = getTimeString();
+
+  setInterval(() => {
+    currentTime = getTimeString();
+  }, 60000);
+
+  function getTimeString() {
+    const date = new Date();
+    let hour = String(date.getHours()).padStart(2, "0");
+    let min = String(date.getMinutes()).padStart(2, "0");
+    return `${hour}:${min}`;
+  }
+
+  const provider = new GoogleAuthProvider();
+  const auth = getAuth();
+
+  const loginWithGoogle = async () => {
+    try {
+      const result = await signInWithPopup(auth, provider);
+      const credential = GoogleAuthProvider.credentialFromResult(result);
+    const token = credential.accessToken;
+      const user = result.user;
+      user$.set(user);
+      localStorage.setItem("token", token);
+    } catch (error) {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      const email = error.customData.email;
+      const credential = GoogleAuthProvider.credentialFromError(error);
+      console.error(error);
+    }
+  };
 </script>
 
 <header>
   <div class="info-bar">
-    <div class="info-bar__time">{hour}:{min}</div>
+    <div class="info-bar__time">{currentTime}</div>
     <div class="info-bar__icons">
       <img src="assets/chart.svg" alt="chart" />
       <img src="assets/wifi.svg" alt="wifi" />
@@ -41,12 +75,15 @@
 
     <div class="login-submit">
       <button type="submit">로그인</button>
+      <button class="login-google" on:click={loginWithGoogle}
+        >Google로 로그인하기</button
+      >
     </div>
 
     <div id="info" />
   </form>
 </main>
 
-<Footer location="login" />
+<Nav location="login" />
 
 <div class="media-info-msg">화면 사이즈를 줄여주세요</div>

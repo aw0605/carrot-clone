@@ -1,10 +1,20 @@
 <script>
-  import { onMount } from "svelte";
+  import { onMount, afterUpdate } from "svelte";
   import { getDatabase, ref, onValue } from "firebase/database";
-  import Footer from "../components/Footer.svelte";
+  import Nav from "../components/Nav.svelte";
 
-  let hour = new Date().getHours().toString().padStart(2, "0");
-  let min = new Date().getMinutes().toString().padStart(2, "0");
+  let currentTime = getTimeString();
+
+  setInterval(() => {
+    currentTime = getTimeString();
+  }, 60000);
+
+  function getTimeString() {
+    const date = new Date();
+    let hour = String(date.getHours()).padStart(2, "0");
+    let min = String(date.getMinutes()).padStart(2, "0");
+    return `${hour}:${min}`;
+  }
 
   const calcTime = (timestamp) => {
     //한국시간 UTC+9
@@ -35,7 +45,7 @@
 
 <header>
   <div class="info-bar">
-    <div class="info-bar__time">{hour}:{min}</div>
+    <div class="info-bar__time">{currentTime}</div>
     <div class="info-bar__icons">
       <img src="assets/chart.svg" alt="chart" />
       <img src="assets/wifi.svg" alt="wifi" />
@@ -84,6 +94,6 @@
   <a class="write-btn" href="#/write">+ 글쓰기</a>
 </main>
 
-<Footer location="home" />
+<Nav location="home" />
 
 <div class="media-info-msg">화면 사이즈를 줄여주세요</div>

@@ -1,5 +1,6 @@
 <script>
-  import Footer from "../components/Footer.svelte";
+  import { afterUpdate } from "svelte";    
+  import Nav from "../components/Nav.svelte";
   import { getDatabase, ref, push } from "firebase/database";
   import {
     getStorage,
@@ -7,6 +8,19 @@
     uploadBytes,
     getDownloadURL,
   } from "firebase/storage";
+
+  let currentTime = getTimeString();
+
+  setInterval(() => {
+    currentTime = getTimeString();
+  }, 60000);
+
+  function getTimeString() {
+    const date = new Date();
+    let hour = String(date.getHours()).padStart(2, "0");
+    let min = String(date.getMinutes()).padStart(2, "0");
+    return `${hour}:${min}`;
+  }
 
   let title;
   let price;
@@ -42,14 +56,11 @@
     const url = await uploadFile();
     writeUserData(url);
   };
-
-  let hour = new Date().getHours().toString().padStart(2, "0");
-  let min = new Date().getMinutes().toString().padStart(2, "0");
 </script>
 
 <header>
   <div class="info-bar">
-    <div class="info-bar__time">{hour}:{min}</div>
+    <div class="info-bar__time">{currentTime}</div>
     <div class="info-bar__icons">
       <img src="assets/chart.svg" alt="chart" />
       <img src="assets/wifi.svg" alt="wifi" />
@@ -120,6 +131,6 @@
   </form>
 </main>
 
-<Footer location="write" />
+<Nav location="write" />
 
 <div class="media-info-msg">화면 사이즈를 줄여주세요</div>
